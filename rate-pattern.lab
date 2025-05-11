@@ -1,0 +1,36 @@
+lab_name: rate-pattern
+lab_title: "Covert Channel Rate Pattern Lab"
+lab_version: "1.0"
+lab_author: "PTIT Security Lab"
+lab_requirements:
+  - docker
+  - labtainer
+# Import external module
+pre_lab:
+  - "imodule https://github.com/thang010501/rate-pattern/raw/main/imodule.tar"
+
+# Host configuration
+hosts:
+  - name: Sender
+    image: ubuntu:20.04
+  - name: Receiver
+    image: ubuntu:20.04
+
+# Checkwork definitions (4 tasks)
+checkworks:
+  - id: 1
+    host: Sender
+    script: checkwork/check1.sh
+    description: "Verify rate modulation on switch to affect throughput"
+  - id: 2
+    host: Sender
+    script: checkwork/check2.sh
+    description: "Embed fragmented secret into multi-protocol stream"
+  - id: 3
+    host: Sender
+    script: checkwork/check3.sh
+    description: "Apply permutation-based multi-protocol encoding"
+  - id: 4
+    host: Receiver
+    script: checkwork/check4.sh
+    description: "Reassemble secret based on Sid mapping"
